@@ -1,0 +1,114 @@
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: grid;
+  grid-template-columns: 200px 1fr; /* Sidebar and main content */
+}
+
+aside {
+  /* width: 200px; Adjust as needed */
+  padding: 20px;
+  /* position: fixed; */
+  left: 0;
+  top: 0;
+  height: 100%;
+  overflow-y: auto; /* For long about text */
+}
+
+main {
+  flex: 1;
+  padding: 20px;
+}
+
+header {
+  background-color: #fff;
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10; /* Ensure it's on top */
+}
+
+nav ul {  
+  display: flex;
+  justify-content: space-between;
+}
+
+nav ul li {
+  list-style: none;
+}
+
+nav a {
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+nav #about-link {
+  display: none;
+}
+
+footer {
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  background-color: #fff;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  aside {
+    display: none;
+  }
+  main {
+    margin-left: 0;
+  }
+  nav {
+    justify-content: flex-end; /* Align items to the right */
+  }
+  nav #about-link {
+    display: flex; /* Make "about" visible */
+  }
+}
+
+/* Popup Styles */
+.popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #ccc;
+  z-index: 11;
+}
+.popup-content {
+  max-height: 80vh; /* Limit height to 80% of viewport */
+  overflow-y: auto; /* Add scroll if content overflows */
+}
+
+/* Text styles & colors */
+body {
+  font-family: Arial, sans-serif;
+  font-size: 1rem; /* should come out to 16px * 1.333 = 21.328px */
+  color: #d95050;
+}
+h1, h2, p, a {
+  color: #d95050;
+}
+h1, h2 {
+  font-size: 1rem;
+}
+aside, footer {
+  font-size: .85rem;
+}
+
+/* for later: aside, main, nav, nav */
