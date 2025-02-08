@@ -3,15 +3,10 @@ body, html {
   margin: 0;
 }
 
-body {
-  display: grid;
-  grid-template-columns: 200px 1fr; /* Sidebar and main content */
-}
-
 aside {
-  /* width: 200px; Adjust as needed */
+  width: 200px; /* Adjust as needed */
   padding: 20px;
-  /* position: fixed; */
+  position: fixed;
   left: 0;
   top: 0;
   height: 100%;
@@ -21,6 +16,8 @@ aside {
 main {
   flex: 1;
   padding: 20px;
+  overflow-y: auto;
+  margin-left: 200px; /* Adjust to sidebar width */
 }
 
 header {
