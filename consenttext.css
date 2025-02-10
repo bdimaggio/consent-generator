@@ -40,7 +40,6 @@ main {
   box-sizing: border-box;
   max-height: 55vh;
   vertical-align: bottom;
-  display: flex;
 }
 
 span#content-wrapper {

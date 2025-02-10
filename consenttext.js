@@ -28,61 +28,39 @@ document.querySelector('#about-link a').addEventListener("click", openPopup);
 /**
  * Teletype behavior.
  */
-// import data from './consenttext1.json' with { type: 'json' };
-// const textDelay = 50;
-// const metadataDelay = 150;
-// const contentWrapper = document.getElementById('content-wrapper');
-// let intervalID;
-// data.forEach((item, index) => {
-//   if (intervalID !== undefined) {
-//     clearInterval(intervalID);
-//   }
-//   if (index === data.length - 1) {
-//     // Got through all the data elements; don't set another interval.
-//     return;
-//   }
+import transcript from './consenttext1.json' with { type: 'json' };
+const mainContent = document.getElementById('main-content');
+const itemDelay = 150;
+const textDelay = 25;
+async function playTranscript(transcript) {
+  for (const item of transcript) {
+    await new Promise(resolve => setTimeout(resolve, itemDelay)); // Delay 50ms
 
-//   // Plunk in the paragraph.
-//   const p = document.createElement('p');
-//   contentWrapper.appendChild(p);
-//   // Add timestamp.
-//   intervalID = setInterval(() => {
-//     const timestamp = document.createElement('span');
-//     timestamp.className = 'timestamp';
-//     timestamp.innerText = `${item.timestamp.start} - ${item.timestamp.end}`;
-//     p.appendChild(timestamp);
+    // Show timestamp and speaker (assuming they exist)
+    const timestamp = item.timestamp.start && item.timestamp.end ? `${item.timestamp.start} - ${item.timestamp.end}`: "N/A";
+    const speaker = item.speaker || "N/A";
+    const p = document.createElement('p');
+    mainContent.appendChild(p);
+    const timestampBox = document.createElement('span'); 
+    timestampBox.className = 'timestamp';
+    timestampBox.innerText = timestamp;
+    p.appendChild(timestampBox);
+    const speakerBox = document.createElement('span');
+    speakerBox.className = 'speaker';
+    speakerBox.innerText = speaker; //item.speaker;
+    p.appendChild(speakerBox);
 
-//   }, metadataDelay);  
-// });
-
-import data from './consenttext1.json' with { type: 'json' };
-const delay = 50;
-let index = 0;
-
-
-
-
-data.forEach((item, index) => {
-  const p = document.createElement('p');
-  document.getElementById('content-wrapper').appendChild(p);
-  const timestamp = document.createElement('span'); 
-  timestamp.className = 'timestamp';
-  timestamp.innerText = `${item.timestamp.start} - ${item.timestamp.end}`;
-  p.appendChild(timestamp);
-  const speaker = document.createElement('span');
-  speaker.className = 'speaker';
-  speaker.innerText = item.speaker;
-  p.appendChild(speaker);
-  const box = document.createElement('span');
-  box.className = 'text';
-  p.appendChild(box);
-  let textIndex = 0;
-  const dribble = () => {
-    box.append(item.text[textIndex]);
-    textIndex++;
-    if (textIndex >= text.length) {
-      clearInterval(intervalID);
+    const textBox = document.createElement('span');
+    textBox.className = 'text';
+    p.appendChild(textBox);
+    // Show text with 50ms delay per character
+    const text = item.text || "";
+    for (let i = 0; i < text.length; i++) {
+      await new Promise(resolve => setTimeout(resolve, textDelay));
+      textBox.append(text[i]);
+      mainContent.scrollTop = mainContent.scrollHeight;
     }
   }
-  const intervalID = setInterval(dribble, delay);
-});
+}
+
+playTranscript(transcript);
