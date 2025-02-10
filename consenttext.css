@@ -1,11 +1,23 @@
+:root {
+  --sidebar-width: 130px;
+  --lateral-padding: 30px;
+  --sidebar-with-lateral-padding: 240px;
+  --top-padding: 55px;
+  --content-width: 950;
+}
+
 body, html {
   height: 100%;
   margin: 0;
 }
 
+#container {
+  width: 1200px;
+  margin: 0 auto;
+}
 aside {
-  width: 200px; /* Adjust as needed */
-  padding: 20px;
+  width: var(--sidebar-width);
+  padding: var(--top-padding) var(--lateral-padding) 0 var(--lateral-padding);
   position: fixed;
   left: 0;
   top: 0;
@@ -13,25 +25,61 @@ aside {
   overflow-y: auto; /* For long about text */
 }
 
+aside p:first-of-type {
+  line-height: 1.345;
+}
+
+#content-container {
+  margin-left: var(--sidebar-with-lateral-padding);
+}
+
 main {
-  flex: 1;
-  padding: 20px;
+  padding: 86px var(--lateral-padding) 0 0;
   overflow-y: auto;
-  margin-left: 200px; /* Adjust to sidebar width */
+  max-width: calc(var(--content-width) * 1px);
+  box-sizing: border-box;
+  max-height: 55vh;
+  vertical-align: bottom;
+  display: flex;
+}
+
+span#content-wrapper {
+  justify-content: flex-end;
+}
+
+.transcript, .speaker, .speech {
+  display: block;
+}
+
+main p:first-of-type {
+  margin-top: 0;
+}
+
+header, footer {
+  position: fixed;
+  width: 100%;
+  z-index: 10; /* Ensure it's on top */
+  box-sizing: border-box;
+  padding-left: var(--sidebar-with-lateral-padding);
 }
 
 header {
-  background-color: #fff;
-  padding: 10px;
-  position: fixed;
   top: 0;
-  width: 100%;
-  z-index: 10; /* Ensure it's on top */
+}
+
+#header-wrapper {
+  background-color: #fff;
+  padding: var(--top-padding) 0 14px;
+  display: grid;
+  grid-template-columns: 2fr 3fr;
 }
 
 nav ul {  
   display: flex;
-  justify-content: space-between;
+  gap: 25px;
+  justify-content: left;
+  padding: 0;
+  margin: 0;
 }
 
 nav ul li {
@@ -40,7 +88,6 @@ nav ul li {
 
 nav a {
   text-decoration: none;
-  margin: 0 10px;
 }
 
 nav #about-link {
@@ -48,19 +95,75 @@ nav #about-link {
 }
 
 footer {
-  padding: 10px;
-  position: fixed;
   bottom: 0;
-  width: 100%;
-  box-sizing: border-box;
-  display: flex;
+  padding-top: 20px;
+  padding-right: 10px;
+  padding-bottom: 30px;
   background-color: #fff;
+}
+
+#footer-wrapper {
+  display: flex;
   justify-content: space-between;
-  padding: 0 10px;
+  max-width: calc(var(--content-width) * 1px - 20px);
+}
+
+/* Popup Styles */
+#popup {
+  position: fixed;
+  top: 50%;
+  left: 30%;
+  transform: translate(-22%, -50%);
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #ccc;
+  z-index: 11;
+}
+#popup-inner {
+  max-height: 80vh; /* Limit height to 80% of viewport */
+  overflow-y: auto; /* Add scroll if content overflows */
+}
+
+#scrim {
+  z-index: 11;
+  position: fixed;
+  width: 100vw;
+  height: 110vh;
+  top: 0;
+  background-color: #ccc;
+  opacity: .6;
+  display: none;
+}
+
+/* Text styles & colors */
+body {
+  font-family: Arial, sans-serif;
+  font-size: 1rem;
+  color: #d95050;
+}
+h1, h2, p, a {
+  color: #d95050;
+}
+h1, h2 {
+  font-size: 1rem;
+  margin: 0;
+}
+h1 {
+  margin: 0;
+  min-width: 300px;
+}
+aside, footer {
+  font-size: .8rem;
 }
 
 /* Responsive Styles */
 @media (max-width: 768px) {
+  header, footer {
+    padding-left: var(--lateral-padding);
+  }
+  #content-container {
+    margin-left: var(--lateral-padding);
+  }
   aside {
     display: none;
   }
@@ -75,37 +178,14 @@ footer {
   }
 }
 
-/* Popup Styles */
-.popup {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  padding: 20px;
-  border: 1px solid #ccc;
-  z-index: 11;
+@media (max-width: 595px) {
+  #header-wrapper {
+    grid-template-columns: 1fr;
+  }
+  nav ul {
+    margin-top: 10px;
+  }
+  footer {
+    padding-left: 10px;
+  }
 }
-.popup-content {
-  max-height: 80vh; /* Limit height to 80% of viewport */
-  overflow-y: auto; /* Add scroll if content overflows */
-}
-
-/* Text styles & colors */
-body {
-  font-family: Arial, sans-serif;
-  font-size: 1rem; /* should come out to 16px * 1.333 = 21.328px */
-  color: #d95050;
-}
-h1, h2, p, a {
-  color: #d95050;
-}
-h1, h2 {
-  font-size: 1rem;
-}
-aside, footer {
-  font-size: .85rem;
-}
-
-/* for later: aside, main, nav, nav */
