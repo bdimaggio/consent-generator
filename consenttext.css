@@ -35,6 +35,7 @@ body, html {
 .layout-content {
   display: flex;
   flex-direction: column;
+  padding-right: 1.875rem;
   width: calc(100% - var(--sidebar-width));
 }
 
@@ -57,10 +58,7 @@ body, html {
 #main-content {
   overflow-y: auto;
   max-width: calc(var(--content-width) * 1px);
-  box-sizing: border-box;
-  max-height: 74vh;
-  vertical-align: bottom;
-  flex-grow: 1;
+  max-height: 69vh;
 }
 
 #content-wrapper {
@@ -156,17 +154,15 @@ body {
 body.fonts-loaded {
   font-family: var(--font-sans);
 }
-h1, h2, p, a {
+a {
   color: #d95050;
 }
 h1, h2 {
   font-size: 1rem;
   margin: 0;
-  font-weight: 700;
 }
 h1 {
   margin: 0;
-  min-width: 300px;
 }
 aside, footer {
   font-size: .8rem;
