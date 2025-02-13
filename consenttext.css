@@ -4,6 +4,7 @@
   --sidebar-with-lateral-padding: 240px;
   --top-padding: 55px;
   --content-width: 950;
+  --layout-gap: 3.2rem;
 }
 
 body, html {
@@ -14,36 +15,38 @@ body, html {
 .layout-container {
   display: flex;
   height: 100%;
+  gap: var(--layout-gap);
 }
 
-#container {
-  width: 1200px;
-  margin: 0 auto;
+.layout-content {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - var(--sidebar-width));
 }
 
-#sidebar {
+.layout-sidebar {
   width: var(--sidebar-width);
   padding: var(--top-padding) var(--lateral-padding) 0 var(--lateral-padding);
   flex: 1 0 var(--sidebar-width);
-  height: 100%;
   overflow-y: auto; /* For long about text */
 }
 
-#sidebar p:first-of-type {
+.layout-sidebar p:first-of-type {
   line-height: 1.345;
 }
 
 #content-container {
-  margin-left: var(--sidebar-with-lateral-padding);
+  max-width: 1200px;
+  flex-grow: 1;
 }
 
-#content-container {
-  padding: 86px var(--lateral-padding) 0 0;
+#main-content {
   overflow-y: auto;
   max-width: calc(var(--content-width) * 1px);
   box-sizing: border-box;
-  max-height: 80vh;
+  max-height: 74vh;
   vertical-align: bottom;
+  flex-grow: 1;
 }
 
 #content-wrapper {
@@ -59,15 +62,9 @@ body, html {
 }
 
 #header, #footer {
-  position: fixed;
   width: 100%;
   z-index: 10; /* Ensure it's on top */
   box-sizing: border-box;
-  padding-left: var(--sidebar-with-lateral-padding);
-}
-
-#header {
-  top: 0;
 }
 
 #header-wrapper {
@@ -98,7 +95,6 @@ nav #about-link {
 }
 
 #footer {
-  bottom: 0;
   padding-top: 20px;
   padding-right: 10px;
   padding-bottom: 30px;
@@ -161,17 +157,12 @@ aside, footer {
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-  header, footer {
-    padding-left: var(--lateral-padding);
-  }
-  #content-container {
-    margin-left: var(--lateral-padding);
-  }
   #sidebar {
     display: none;
   }
-  #main-content {
-    margin-left: 0;
+  .layout-content {
+    width: 100%;
+    padding: 1.875rem;
   }
   nav {
     justify-content: flex-end; /* Align items to the right */
