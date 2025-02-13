@@ -5,6 +5,20 @@
   --top-padding: 55px;
   --content-width: 950;
   --layout-gap: 3.2rem;
+  --font-sans: "Overused Grotesk", sans-serif;
+}
+
+@font-face {
+  font-family: "Overused Grotesk";
+  src:
+    url("fonts/OverusedGrotesk-Roman.woff2") format("woff2");
+  font-weight: 300;
+}
+@font-face {
+  font-family: "Overused Grotesk";
+  src:
+    url("fonts/OverusedGrotesk-Bold.woff2") format("woff2");
+  font-weight: 700;
 }
 
 body, html {
@@ -136,9 +150,11 @@ nav #about-link {
 
 /* Text styles & colors */
 body {
-  font-family: Arial, sans-serif;
   font-size: 1rem;
   color: #d95050;
+}
+body.fonts-loaded {
+  font-family: var(--font-sans);
 }
 h1, h2, p, a {
   color: #d95050;
@@ -146,6 +162,7 @@ h1, h2, p, a {
 h1, h2 {
   font-size: 1rem;
   margin: 0;
+  font-weight: 700;
 }
 h1 {
   margin: 0;
