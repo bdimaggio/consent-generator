@@ -38,7 +38,7 @@ async function playTranscript(transcript) {
 
     // Show timestamp and speaker (assuming they exist)
     const timestamp = item.timestamp.start && item.timestamp.end ? `${item.timestamp.start} - ${item.timestamp.end}`: "N/A";
-    const speaker = item.speaker || "N/A";
+    const speaker = item.speaker || '';
     const p = document.createElement('p');
     mainContent.appendChild(p);
     const timestampBox = document.createElement('span'); 
@@ -53,12 +53,14 @@ async function playTranscript(transcript) {
     const textBox = document.createElement('span');
     textBox.className = 'text';
     p.appendChild(textBox);
-    // Show text with 50ms delay per character
     const text = item.text || "";
     for (let i = 0; i < text.length; i++) {
       await new Promise(resolve => setTimeout(resolve, textDelay));
       textBox.append(text[i]);
+      
+      // Todo: allow user to scroll up to see older text. Continue autoscroll behavior if user is at the bottom.
       mainContent.scrollTop = mainContent.scrollHeight;
+      
     }
   }
 }
