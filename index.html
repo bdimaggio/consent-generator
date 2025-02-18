@@ -1,46 +1,61 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Consent generator [De-generator]</title>
-<link rel="stylesheet" type="text/css" href="consenttext.css">
-<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+  <meta charset="UTF-8">
+  <title>Consent generator [De-generator]</title>
+  <link rel="stylesheet" type="text/css" href="consenttext.css">
+  <link rel="preload" href="fonts/OverusedGrotesk-Roman.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/OverusedGrotesk-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 <body>
 
-<header>
-  <div id="header-wrapper">
-    <h1>Consent generator [De-generator]</h1>
-    <nav>
-      <ul>
-        <li id="about-link"><a href="#">about</a></li>
-        <li><a href="#">text</a></li>
-        <li><a href="#">print</a></li>
-        <li><a href="#">audio</a></li>
-      </ul>
-    </nav>
+  <div class="layout-container">
+    <aside class="layout-sidebar" id="sidebar">
+      <h2>about</h2>
+      <p>Consent generator [De-generator] examines the connections between exposure to rape fictions and broad societal acceptance of violence toward women. The generator is a machine learning model seeded with transcripts from existing pornographic videos where a subject, typically a woman, negotiates the terms of and provides consent for a BDSM scene where she will be the submissive. The model generates new narratives with the goal of examining how this intelligence understands these fictions in order to continuously propagate them.</p>
+    </aside>
+
+    <div class="layout-content">
+      <header id="header">
+        <div id="header-wrapper">
+          <h1>Consent generator [De-generator]</h1>
+          <nav>
+            <ul>
+              <li id="about-link"><a href="#">about</a></li>
+              <li><a href="#">text</a></li>
+              <li><a href="#">print</a></li>
+              <li><a href="#">audio</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+  
+      <main id="content-container">
+        <section id="main-content">
+
+        </section>
+      </main>
+      <footer id="footer">
+        <div id="footer-wrapper">
+          <div id="counter">1 of 10,000</div>
+          <div id="site-id"><a href="https://xanthradufrane.com">xanthradufrane.com</a></div>
+        </div>
+      </footer>
+    </div>
+
   </div>
-</header>
 
-<aside id="sidebar">
-  <h2>about</h2>
-  <p>Consent generator [De-generator] examines the connections between exposure to rape fictions and broad societal acceptance of violence toward women. The generator is a machine learning model seeded with transcripts from existing pornographic videos where a subject, typically a woman, negotiates the terms of and provides consent for a BDSM scene where she will be the submissive. The model generates new narratives with the goal of examining how this intelligence understands these fictions in order to continuously propagate them.</p>
-</aside>
-
-<section id="content-container">
-
-  <main id="main-content">
-    
-  </main>
-</section>
-
-<footer>
-  <div id="footer-wrapper">
-    <div id="counter">1 of 10,000</div>
-    <div id="site-id"><a href="https://xanthradufrane.com">xanthradufrane.com</a></div>
-  </div>
-</footer>
-
-
-<script src="consenttext.js" type="module"></script>
+  <script src="js/fontfaceobserver.js"></script>
+  <script>
+    // Per https://github.com/RandomMaerks/Overused-Grotesk/tree/main?tab=readme-ov-file
+    var font = new FontFaceObserver('Overused Grotesk');
+    font.load().then(function () {
+      document.body.classList.add('fonts-loaded');
+    }).catch(function () {
+      console.log('Overused Grotesk failed to load.');
+    });
+    </script>
+  <script src="js/consenttext.js" type="module"></script>
 </body>
 </html>
