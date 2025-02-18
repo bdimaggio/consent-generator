@@ -169,6 +169,12 @@ aside, footer {
 }
 
 /* Responsive Styles */
+@media (max-width: 970px) {
+  #header-wrapper {
+    grid-template-columns: 5fr 4fr;
+  }
+}
+
 @media (max-width: 768px) {
   #sidebar {
     display: none;
@@ -185,14 +191,11 @@ aside, footer {
   }
 }
 
-@media (max-width: 595px) {
+@media (max-width: 580px) {
   #header-wrapper {
     grid-template-columns: 1fr;
   }
   nav ul {
     margin-top: 10px;
-  }
-  #footer {
-    padding-left: 10px;
   }
 }

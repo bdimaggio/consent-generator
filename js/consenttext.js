@@ -67,7 +67,7 @@ async function addTranscriptEntry({ speaker = 'N/A', text = "", timestamp = { st
   // Create a speaker box
   const speakerBox = document.createElement('span');
   speakerBox.className = 'speaker';
-  speakerBox.innerText = speaker; //item.speaker;
+  speakerBox.innerText = speaker;
   p.appendChild(speakerBox);
 
   // Create a text box
@@ -92,7 +92,7 @@ const textDelay = 25;
 
 async function playTranscript(transcript) {
   for (const item of transcript) {
-    await new Promise(resolve => setTimeout(resolve, itemDelay)); // Delay 50ms
+    await new Promise(resolve => setTimeout(resolve, itemDelay));
     await addTranscriptEntry(item, textDelay); // Add the transcript entry
   }
 }
